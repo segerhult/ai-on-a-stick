@@ -70,7 +70,8 @@ cmake --build --preset build-windows-vs2022-x64-release
 
 ### Ninja
 
-```powershell
+```
+powershell
 cmake --preset windows-ninja-x64
 cmake --build --preset build-windows-ninja-x64
 ```
@@ -227,3 +228,18 @@ Coder runtime: http://127.0.0.1:8081
 8. Put models in `models\...`
 9. Build with the Windows preset
 10. Run `launch\start-windows.bat`
+
+
+
+-error :)
+H:\ai-on-a-stick\AI-On-A-Stick\src\database.cpp(102,13): error C2664: 'void Database::insert_file(const MachineProfile &,const std::string &,uint64_t,int64_t)': cannot convert argument 2 from 'const std::filesys
+tem::path' to 'const std::string &' [H:\ai-on-a-stick\AI-On-A-Stick\build\ai_on_a_stick.vcxproj]
+      H:\ai-on-a-stick\AI-On-A-Stick\src\database.cpp(102,44):
+      Reason: cannot convert from 'const std::filesystem::path' to 'const std::string'
+      H:\ai-on-a-stick\AI-On-A-Stick\src\database.cpp(102,44):
+      No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      H:\ai-on-a-stick\AI-On-A-Stick\src\database.h(33,10):
+      see declaration of 'Database::insert_file'
+      H:\ai-on-a-stick\AI-On-A-Stick\src\database.cpp(102,13):
+      while trying to match the argument list '(const MachineProfile, const std::filesystem::path, const uintmax_t, const int64_t)'
+

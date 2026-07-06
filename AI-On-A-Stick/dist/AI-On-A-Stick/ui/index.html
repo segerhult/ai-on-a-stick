@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI-On-A-Stick</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="brand-mark">AI</div>
+          <div>
+            <h1>AI-On-A-Stick</h1>
+            <p class="subtitle">Portable local runtime</p>
+          </div>
+        </div>
+
+        <div class="sidebar-actions">
+          <button id="new-chat" class="ghost-button" type="button">New chat</button>
+          <div class="sidebar-note">Runs fully local from the USB bundle.</div>
+        </div>
+
+        <section class="sidebar-section">
+          <h2>Machine</h2>
+          <div id="machine-status" class="status-grid"></div>
+        </section>
+
+        <section class="sidebar-section">
+          <h2>Runtimes</h2>
+          <div id="runtime-status" class="runtime-grid"></div>
+        </section>
+
+        <section class="sidebar-section">
+          <h2>Recent Files</h2>
+          <ul id="files" class="files"></ul>
+        </section>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div class="topbar-title">
+            <span class="topbar-label">Local chat</span>
+            <strong>AI-On-A-Stick</strong>
+          </div>
+          <div class="topbar-actions">
+            <div class="topbar-pill">Streaming</div>
+            <label class="mode-select">
+              <span>Model</span>
+              <select id="chat-mode">
+                <option value="general" selected>General</option>
+                <option value="coder">Coder</option>
+                <option value="agent">Agent</option>
+              </select>
+            </label>
+          </div>
+        </header>
+
+        <section class="chat-view">
+          <div class="conversation">
+            <div class="conversation-intro">
+              <p class="eyebrow">Local AI runtime</p>
+              <h2>Ask anything on this machine</h2>
+              <p>Only one model is loaded at a time. Switching to another model unloads the current one first.</p>
+            </div>
+            <div id="messages" class="messages" aria-live="polite"></div>
+          </div>
+
+          <form id="chat-form" class="composer">
+            <div class="composer-shell">
+              <textarea id="prompt" rows="1" placeholder="Ask anything..."></textarea>
+              <button class="send-button" type="submit">Send</button>
+            </div>
+            <p class="composer-note">Enter sends. Shift+Enter adds a newline. General and Coder swap the loaded model automatically.</p>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

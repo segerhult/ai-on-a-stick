@@ -1,0 +1,3 @@
+/Users/davidsoderman/Documents/REPO/AI-On-A-Stick/build/CMakeFiles/ai_on_a_stick.dir
+/Users/davidsoderman/Documents/REPO/AI-On-A-Stick/build/CMakeFiles/edit_cache.dir
+/Users/davidsoderman/Documents/REPO/AI-On-A-Stick/build/CMakeFiles/rebuild_cache.dir

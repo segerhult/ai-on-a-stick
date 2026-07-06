@@ -69,7 +69,7 @@ if(AI_ON_A_STICK_BUILD_LLAMA_SERVER)
 
     set(LLAMA_BUILD_COMMON ON CACHE BOOL "Build llama.cpp common library" FORCE)
     set(LLAMA_BUILD_SERVER ON CACHE BOOL "Build llama.cpp server" FORCE)
-    set(LLAMA_BUILD_TOOLS OFF CACHE BOOL "Disable extra llama.cpp tools" FORCE)
+    set(LLAMA_BUILD_TOOLS ON CACHE BOOL "Build llama.cpp tools required for llama-server" FORCE)
     set(LLAMA_BUILD_EXAMPLES OFF CACHE BOOL "Disable llama.cpp examples" FORCE)
     set(LLAMA_BUILD_TESTS OFF CACHE BOOL "Disable llama.cpp tests" FORCE)
     set(LLAMA_BUILD_APP OFF CACHE BOOL "Disable llama.cpp unified app" FORCE)
@@ -84,6 +84,10 @@ if(AI_ON_A_STICK_BUILD_LLAMA_SERVER)
         GIT_TAG ${AI_ON_A_STICK_LLAMA_CPP_TAG}
     )
     FetchContent_MakeAvailable(llama_cpp)
+
+    if(NOT TARGET llama-server)
+        message(FATAL_ERROR "Fetched llama.cpp did not define target 'llama-server'.")
+    endif()
 
     get_target_property(_ai_on_a_stick_llama_server_output_dir llama-server RUNTIME_OUTPUT_DIRECTORY)
     if(NOT _ai_on_a_stick_llama_server_output_dir)

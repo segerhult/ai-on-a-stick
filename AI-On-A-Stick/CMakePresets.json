@@ -1,0 +1,55 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "windows-vs2022-x64",
+      "displayName": "Windows VS2022 x64",
+      "description": "Configure AI-On-A-Stick for Windows x64 with Visual Studio 2022 and vcpkg.",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/build/windows-vs2022-x64",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-ninja-x64",
+      "displayName": "Windows Ninja x64",
+      "description": "Configure AI-On-A-Stick for Windows x64 with Ninja and vcpkg.",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/windows-ninja-x64",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "build-windows-vs2022-x64-release",
+      "displayName": "Build Windows VS2022 Release",
+      "configurePreset": "windows-vs2022-x64",
+      "configuration": "Release"
+    },
+    {
+      "name": "build-windows-ninja-x64",
+      "displayName": "Build Windows Ninja Release",
+      "configurePreset": "windows-ninja-x64"
+    }
+  ]
+}

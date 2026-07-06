@@ -266,3 +266,80 @@ tem::path' to 'const std::string &' [H:\ai-on-a-stick\AI-On-A-Stick\build\ai_on_
       see declaration of 'Database::insert_file'
       H:\ai-on-a-stick\AI-On-A-Stick\src\database.cpp(102,13):
       while trying to match the argument list '(const MachineProfile, const std::filesystem::path, const uintmax_t, const int64_t)'
+
+## error ;(
+ cmake --preset windows-vs2022-x64
+>> cmake --build --preset build-windows-vs2022-x64-release
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.0.26200.
+-- The C compiler identification is MSVC 19.44.35228.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+CMAKE_BUILD_TYPE=
+-- Found Git: C:/Program Files/Git/cmd/git.exe (found version "2.55.0.windows.2")
+-- The ASM compiler identification is MSVC
+CMake Warning (dev) at C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineASMCompiler.cmake:234 (message):
+  Policy CMP194 is not set: MSVC is not an assembler for language ASM.  Run
+  "cmake --help-policy CMP194" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  build/windows-vs2022-x64/_deps/llama_cpp-src/ggml/CMakeLists.txt:3 (project)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Found assembler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe
+-- Warning: ccache not found - consider installing it for faster compilation or disable this warning with GGML_CCACHE=OFF
+-- CMAKE_SYSTEM_PROCESSOR: AMD64
+-- CMAKE_GENERATOR_PLATFORM: x64
+-- GGML_SYSTEM_ARCH: x86
+-- Found OpenMP_C: -openmp (found version "2.0")
+-- Found OpenMP_CXX: -openmp (found version "2.0")
+-- Found OpenMP: TRUE (found version "2.0")
+-- Including CPU backend
+-- x86 detected
+-- Performing Test HAS_AVX_1
+-- Performing Test HAS_AVX_1 - Success
+-- Performing Test HAS_AVX2_1
+-- Performing Test HAS_AVX2_1 - Success
+-- Performing Test HAS_FMA_1
+-- Performing Test HAS_FMA_1 - Success
+-- Performing Test HAS_AVX512_1
+-- Performing Test HAS_AVX512_1 - Success
+-- Adding CPU backend variant ggml-cpu: /arch:AVX512 GGML_AVX512
+-- ggml version: 0.15.3
+-- ggml commit:  20a04b220
+CMake Error at CMakeLists.txt:88 (get_target_property):
+  get_target_property() called with non-existent target "llama-server".
+
+
+-- llama.cpp auto-build enabled from https://github.com/ggml-org/llama.cpp.git@20a04b22063020cd0f29b7781f5352d7a6abf786
+-- llama-server bundle destination: H:/ai-on-a-stick/ai-on-a-stick/bin/windows-x64
+-- Windows build configured for AI-On-A-Stick
+-- Using toolchain file: C:\Users\Martin Jonsson\vcpkg/scripts/buildsystems/vcpkg.cmake
+-- Configuring incomplete, errors occurred!
+CMake is re-running because H:/ai-on-a-stick/ai-on-a-stick/build/windows-vs2022-x64/CMakeFiles/generate.stamp is out-of-date.
+  the file 'H:/ai-on-a-stick/ai-on-a-stick/CMakeLists.txt'
+  is newer than 'H:/ai-on-a-stick/ai-on-a-stick/build/windows-vs2022-x64/CMakeFiles/generate.stamp.depend'
+  result='-1'
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.0.26200.
+CMAKE_BUILD_TYPE=
+-- Warning: ccache not found - consider installing it for faster compilation or disable this warning with GGML_CCACHE=OFF
+-- CMAKE_SYSTEM_PROCESSOR: AMD64
+-- CMAKE_GENERATOR_PLATFORM: x64
+-- GGML_SYSTEM_ARCH: x86
+-- Including CPU backend
+-- x86 detected
+-- Adding CPU backend variant ggml-cpu: /arch:AVX512 GGML_AVX512
+-- ggml version: 0.15.3
+-- ggml commit:  20a04b220
+CMake Error at CMakeLists.txt:88 (get_target_property):
+  get_target_property() called with non-existent target "llama-server".
+
+
+-- llama.cpp auto-build enabled from https://github.com/ggml-org/llama.cpp.git@20a04b22063020cd0f29b7781f5352d7a6abf786
+-- llama-server bundle destination: H:/ai-on-a-stick/ai-on-a-stick/bin/windows-x64
+-- Windows build configured for AI-On-A-Stick
+-- Using toolchain file: C:\Users\Martin Jonsson\vcpkg/scripts/buildsystems/vcpkg.cmake
+-- Configuring incomplete, errors occurred!
+CMake Configure step failed.  Build files cannot be regenerated correctly.

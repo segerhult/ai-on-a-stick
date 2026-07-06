@@ -1,0 +1,3 @@
+# Ignore local model weights so they do not get committed by accident.
+models/**/*.gguf
+dist/AI-On-A-Stick/models/**/*.gguf

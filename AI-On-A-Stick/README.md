@@ -4,7 +4,7 @@ Portable local AI runtime with a static web UI, native C++ backend, bundled `lla
 
 ## Windows Build Guide
 
-This project builds with CMake and C++20. On Windows, the application currently requires `SQLite3` at build time and a prebuilt `llama-server.exe` at runtime.
+This project builds with CMake and C++20. On Windows, the application requires `SQLite3` at build time and can now auto-build `llama-server.exe` during the normal CMake preset flow.
 
 ### What To Install
 
@@ -24,13 +24,13 @@ Recommended Visual Studio components:
 
 ### Runtime File Required
 
-The application does not build `llama.cpp` for you. You must provide:
+The Windows presets now fetch a pinned `llama.cpp` revision and place the built runtime here:
 
 ```text
 bin\windows-x64\llama-server.exe
 ```
 
-The configured runtime path is defined in:
+If you disable the auto-build, you must provide that file manually. The configured runtime path is defined in:
 
 ```text
 config\runtime.ini
@@ -59,7 +59,7 @@ $env:VCPKG_ROOT="$env:USERPROFILE\vcpkg"
 
 ## Build On Windows
 
-This repo now includes Windows CMake presets.
+This repo now includes Windows CMake presets. On the first configure, CMake downloads the pinned `llama.cpp` source and wires `llama-server` into the build automatically.
 
 ### Visual Studio 2022
 
@@ -68,12 +68,23 @@ cmake --preset windows-vs2022-x64
 cmake --build --preset build-windows-vs2022-x64-release
 ```
 
+App output:
+
+```text
+build\windows-vs2022-x64\Release\ai_on_a_stick.exe
+```
+
 ### Ninja
 
-```
-powershell
+```powershell
 cmake --preset windows-ninja-x64
 cmake --build --preset build-windows-ninja-x64
+```
+
+App output:
+
+```text
+build\windows-ninja-x64\ai_on_a_stick.exe
 ```
 
 ### Manual Configure Alternative
@@ -81,16 +92,29 @@ cmake --build --preset build-windows-ninja-x64
 If you do not want to use presets:
 
 ```powershell
-cmake -S . -B build -A x64 -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake"
+cmake -S . -B build -A x64 -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake" -DAI_ON_A_STICK_BUILD_LLAMA_SERVER=ON
 cmake --build build --config Release
+```
+
+If you want a CUDA-enabled `llama-server`, add:
+
+```powershell
+-DAI_ON_A_STICK_LLAMA_CUDA=ON
 ```
 
 ## After Build
 
-The app binary is expected at:
+The app binary is expected at one of these preset outputs:
 
 ```text
-build\Release\ai_on_a_stick.exe
+build\windows-vs2022-x64\Release\ai_on_a_stick.exe
+build\windows-ninja-x64\ai_on_a_stick.exe
+```
+
+The bundled runtime should be generated here:
+
+```text
+bin\windows-x64\llama-server.exe
 ```
 
 To run it successfully, you also need:
@@ -224,9 +248,9 @@ Coder runtime: http://127.0.0.1:8081
 4. Install vcpkg
 5. Install `sqlite3:x64-windows`
 6. Set `VCPKG_ROOT`
-7. Put `llama-server.exe` in `bin\windows-x64\`
-8. Put models in `models\...`
-9. Build with the Windows preset
+7. Build with the Windows preset
+8. Confirm `bin\windows-x64\llama-server.exe` was generated
+9. Put models in `models\...`
 10. Run `launch\start-windows.bat`
 
 
@@ -242,4 +266,3 @@ tem::path' to 'const std::string &' [H:\ai-on-a-stick\AI-On-A-Stick\build\ai_on_
       see declaration of 'Database::insert_file'
       H:\ai-on-a-stick\AI-On-A-Stick\src\database.cpp(102,13):
       while trying to match the argument list '(const MachineProfile, const std::filesystem::path, const uintmax_t, const int64_t)'
-

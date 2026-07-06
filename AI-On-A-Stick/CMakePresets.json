@@ -14,7 +14,8 @@
       "architecture": "x64",
       "binaryDir": "${sourceDir}/build/windows-vs2022-x64",
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "AI_ON_A_STICK_BUILD_LLAMA_SERVER": "ON"
       },
       "condition": {
         "type": "equals",
@@ -30,7 +31,8 @@
       "binaryDir": "${sourceDir}/build/windows-ninja-x64",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "AI_ON_A_STICK_BUILD_LLAMA_SERVER": "ON"
       },
       "condition": {
         "type": "equals",

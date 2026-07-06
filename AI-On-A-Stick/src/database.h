@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <filesystem>
 #include <mutex>
 #include <string>
 #include <vector>
@@ -30,7 +31,7 @@ class Database {
 
   private:
     void execute(const std::string& sql) const;
-    void insert_file(const MachineProfile& machine, const std::string& file_path, std::uint64_t size,
+    void insert_file(const MachineProfile& machine, const std::filesystem::path& file_path, std::uint64_t size,
                      std::int64_t modified_at);
 
     AppConfig config_;

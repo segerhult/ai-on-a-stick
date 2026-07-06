@@ -157,7 +157,7 @@ void Database::execute(const std::string& sql) const {
     }
 }
 
-void Database::insert_file(const MachineProfile& machine, const std::string& file_path, std::uint64_t size,
+void Database::insert_file(const MachineProfile& machine, const fs::path& file_path, std::uint64_t size,
                            std::int64_t modified_at) {
     std::lock_guard<std::mutex> lock(mutex_);
     static constexpr const char* sql =
@@ -173,7 +173,7 @@ void Database::insert_file(const MachineProfile& machine, const std::string& fil
         throw std::runtime_error(sqlite3_errmsg(db_));
     }
 
-    const std::string normalized_path = fs::absolute(fs::path(file_path)).string();
+    const std::string normalized_path = fs::absolute(file_path).string();
     sqlite3_bind_text(statement, 1, machine.id.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(statement, 2, normalized_path.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_int64(statement, 3, static_cast<sqlite3_int64>(size));
